@@ -100,20 +100,20 @@ const Side = ({children, side, className}) => {
                 </nav>
             </div>
         </div>
-        <div className={` w-full  max-sm:gap-[20px] flex flex-col sm:gap-[10px] bg-transparent sm:p-[20px] ${option ? 'max-sm:bg-white max-sm:p-[10px] max-sm:shadow-md max-sm: rounded-md':'max-sm:hidden'}`}>
-            <div className={` grid rounded-md max-sm:bg-transparent max-sm:flex max-sm:justify-center max-sm:items-center sm:p-[5px]  ${side ? 'md:bg-[#edecf1] md:grid-cols-2 max-md:grid-cols-1':'grid-cols-1'}`}>
-                <button className={`sm:p-[10px] rounded-sm capitalize font-bold flex items-center gap-[10px] max-sm:w-full max-sm:flex max-sm:justify-center max-sm:items-center ${side ? 'text-gray-400 max-md:bg-transparent max-md:text-black max-sm:text-gray-400':'text-black bg-transparent max-sm:text-gray-400'}`}>
+        <div className={` w-full  max-sm:gap-[10px] flex flex-col sm:gap-[10px] bg-transparent sm:p-[20px] ${option ? 'max-sm:bg-white max-sm:p-[10px] max-sm:shadow-md max-sm: rounded-md':'max-sm:hidden'}`}>
+            <div className={` grid rounded-md max-sm:hidden max-sm:bg-transparent max-sm:flex max-sm:justify-center max-sm:items-center sm:p-[5px]  ${side ? 'md:bg-[#edecf1] md:grid-cols-2 max-md:grid-cols-1':'grid-cols-1'}`}>
+                <button className={`sm:p-[10px] rounded-sm capitalize font-bold flex items-center gap-[10px] max-sm:w-full max-sm:flex max-sm:items-center ${side ? 'text-gray-400 max-md:bg-transparent max-md:text-black max-sm:text-gray-500':'text-black bg-transparent max-sm:text-gray-400'} max-sm:p-[10px] max-sm:justify-start max-sm:flex `}>
                     <IoMoonOutline/>
-                    <p className={`${side ? 'max-md:hidden':'hidden'}`}>dark</p>
+                    <p className={`${side ? 'max-md:hidden':'sm:hidden'}`}>dark</p>
                 </button>
-                <button className={`sm:p-[10px]  rounded-sm text-gray-500 capitalize font-bold flex items-center gap-[10px] ${side ? 'max-sm:text-gray-500 bg-white max-md:hidden':'text-black bg-blue-500 md:hidden max-sm:hidden'}`}>
+                <button className={`sm:p-[10px] rounded-sm text-gray-500 capitalize font-bold flex items-center gap-[10px] ${side ? 'max-sm:text-gray-500 bg-white max-md:hidden':'text-black bg-blue-500 md:hidden max-sm:hidden'}`}>
                     <IoSunnyOutline/>
                     <p className={`${side ? 'max-md:hidden':'hidden'}`}>white</p>
                 </button>
             </div>
-        <Link href={route('logout')} method="post" as="button" className='sm:bg-red-500 max-sm:text-gray-400 gap-[10px] sm:p-[10px] text-[15px] flex items-center justify-center text-white capitalize rounded-md font-bold'>
+        <Link href={route('logout')} method="post" as="button" className='sm:bg-red-500 max-sm:bg-red-500 max-sm:p-[10px] max-sm:justify-start max-sm:flex max-sm:text-white gap-[10px] sm:p-[10px] text-[15px] flex items-center justify-center text-white capitalize rounded-md max-sm:font-medium sm:font-bold'>
             <IoLogOutOutline className='sm:text-[20px] max-sm:text-[18px]'/>
-            <p className={`${side ? 'max-md:hidden':'hidden'}`}>logout</p>
+            <p className={`${side ? 'max-md:hidden':'sm:hidden'}`}>logout</p>
         </Link>
         </div>
     </div>

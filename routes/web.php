@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/product/create', [ProductController::class, 'store'])->name('product.store');
 
     Route::get('/menu', function () {
-        return Inertia::render('Menus/Food');
+        return Inertia::render('Menus/Menu');
     })->name('dashboard');
 });
 
