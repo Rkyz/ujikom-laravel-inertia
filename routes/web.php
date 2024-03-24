@@ -41,6 +41,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/menu', function () {
         return Inertia::render('Menus/Menu');
     })->name('dashboard');
+    Route::get('/menu/food', function () {
+        return Inertia::render('Menus/Food');
+    })->name('dashboard');
+    Route::get('/user', function () {
+        return Inertia::render('User/Main');
+    })->name('dashboard');
 });
 
 require __DIR__.'/auth.php';

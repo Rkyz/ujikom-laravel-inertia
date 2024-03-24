@@ -40,8 +40,8 @@ const Side = ({children, side, className}) => {
                 </div>
           
             </div>
-            <div className='w-full h-auto max-sm:bg-white max-sm:rounded-md max-sm:py-[10px] '>
-                <nav className='flex sm:flex-col gap-[20px] max-sm:justify-center max-sm:items-center'>
+            <div className='w-full h-auto max-sm:bg-white overflow-x-scroll hidden-scroll max-sm:rounded-md max-sm:py-[10px] '>
+                <nav className='flex sm:flex-col max-sm:gap-[20px] max-sm:justify-center max-sm:items-center'>
                     <div className='flex flex-col gap-[10px] sm:border-b sm:border-gray-300 bg-transparent '>
                         <div className={`flex items-center max-sm:hidden px-[20px] pt-[20px] ${!side ? 'justify-center mb-[10px]':'justify-between max-md:justify-center max-md:mb-[10px]'} `}>
                                 <p className='text-gray-500 text-[12px] uppercase font-bold flex gap-[3px]'>menu <span className={`flex flex-col ${side ? 'max-md:hidden':'md:hidden'}`}>dashboard</span></p>
@@ -69,7 +69,7 @@ const Side = ({children, side, className}) => {
                                     </Link>
                                 </li>
                                 <li className='relative'>
-                                    <Link href="/product" className={`flex items-center gap-[10px] px-[20px] max-sm:p-[15px] max-sm:text-[18px] max-sm:rounded-md  ${url === '/user' | url === '/user/create' && 'sm:bg-transparent max-sm:bg-[#D68285] max-sm:before:hidden  before:bg-[#D68285] before:h-full before:w-[5px] before:absolute before:left-0'} ${side ? 'max-md:justify-center':'md:justify-center max-sm:justify-center'}  `}>
+                                    <Link href="/user" className={`flex items-center gap-[10px] px-[20px] max-sm:p-[15px] max-sm:text-[18px] max-sm:rounded-md  ${url === '/user' | url === '/user/create' && 'sm:bg-transparent max-sm:bg-[#D68285] max-sm:before:hidden  before:bg-[#D68285] before:h-full before:w-[5px] before:absolute before:left-0'} ${side ? 'max-md:justify-center':'md:justify-center max-sm:justify-center'}  `}>
                                         <PiUsersThreeLight className={`text-[20px] ${url === '/user' | url === '/user/create'  ? 'text-[#D68285] max-sm:text-white':'text-gray-400'}`}/>
                                         <p className={`capitalize font-medium max-sm:hidden text-gray-400 text-[15px] ${url === '/user' | url === '/user/create'  ? 'text-gray-500':'text-gray-400'} ${side ? 'max-md:hidden':'md:hidden'}`}>user</p>
                                     </Link>
