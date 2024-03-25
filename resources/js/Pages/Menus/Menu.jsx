@@ -25,7 +25,7 @@ export default function Menu({ auth }) {
 
     >
              <Head title="Dashboard" />
-                <div className='w-full h-full flex flex-col gap-[10px]'>
+                <div className='w-full h-full flex flex-col gap-[20px]'>
                     <div className='p-[25px] sticky sm:top-[96.5px] border-[2px] border-gray-200 bg-white rounded-sm flex items-start justify-between'>
                         <div className='flex gap-[20px] items-center'>
                             <button className='border-[2px] flex items-center justify-center text-gray-500 w-[50px] rounded-full h-[50px] border-[#EEEEF1]'>

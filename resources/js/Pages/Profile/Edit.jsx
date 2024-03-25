@@ -11,7 +11,7 @@ export default function Edit({ auth, mustVerifyEmail, status }) {
         >
             <Head title="Setting" />
 
-            <div className="">
+            <div className="pt-[10px]">
                 <div className="max-w-7xl mx-auto grid max-md:grid-cols-1 md:grid-cols-2 gap-[10px]">
                     <div className="p-4 sm:p-8 rounded-sm bg-white shadow sm:rounded-lg">
                         <UpdateProfileInformationForm

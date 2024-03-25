@@ -1,15 +1,16 @@
 import { useEffect } from 'react';
-import GuestLayout from '@/Layouts/GuestLayout';
+import MainLayout from '@/Layouts/MainLayout';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
 
-export default function Register() {
+export default function Create() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
+        role: '',
         password: '',
         password_confirmation: '',
     });
@@ -22,15 +23,21 @@ export default function Register() {
 
     const submit = (e) => {
         e.preventDefault();
-
         post(route('register'));
     };
 
     return (
-        <GuestLayout>
-            <Head title="Register" />
+        <MainLayout>
+            <Head title="Create" />
+            <div className='flex gap-[10px] w-full'>
 
-            <form onSubmit={submit}>
+            <div className='w-full h-full pt-[10px] flex flex-col gap-[10px]'>
+                    <div className='p-[15px] bg-white capitalize font-bold'>
+                        <p>add user</p>
+                    </div>
+            <div className='bg-white p-[15px] rounded-sm'>
+
+            <form onSubmit={submit} className='flex flex-col gap-[15px]'>
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
 
@@ -48,7 +55,7 @@ export default function Register() {
                     <InputError message={errors.name} className="mt-2" />
                 </div>
 
-                <div className="mt-4">
+                <div>
                     <InputLabel htmlFor="email" value="Email" />
 
                     <TextInput
@@ -65,7 +72,27 @@ export default function Register() {
                     <InputError message={errors.email} className="mt-2" />
                 </div>
 
-                <div className="mt-4">
+                <div>
+                    <InputLabel htmlFor="email" value="Role" />
+                    <select
+                        name="role"
+                        value={data.role}
+                        id="role"
+                        className='border-gray-300 w-full focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm'
+                        onChange={(e) => {
+                            console.log(e.target.value); // Tambahkan ini untuk melacak nilai yang dipilih dari dropdown
+                            setData('role', e.target.value)
+                        }}
+                        required
+                    >
+                        <option value="">Select Role</option>
+                        <option value="admin">Admin</option>
+                        <option value="petugas">Petugas</option>
+                    </select>
+                    <InputError message={errors.role} className="mt-2" />
+                </div>
+
+                <div>
                     <InputLabel htmlFor="password" value="Password" />
 
                     <TextInput
@@ -82,7 +109,7 @@ export default function Register() {
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-                <div className="mt-4">
+                <div>
                     <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
 
                     <TextInput
@@ -98,20 +125,18 @@ export default function Register() {
 
                     <InputError message={errors.password_confirmation} className="mt-2" />
                 </div>
-
-                <div className="flex items-center justify-end mt-4">
-                    <Link
-                        href={route('login')}
-                        className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                        Already registered?
-                    </Link>
-
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Register
-                    </PrimaryButton>
-                </div>
+                <button className='w-full bg-red-500 text-white p-[10px] rounded-md font-bold capitalize'>
+                    create
+                </button>
             </form>
-        </GuestLayout>
+            </div>
+            </div>
+            <div className='w-auto h-full pt-[10px]'>
+            <div className='w-auto p-[15px] h-full bg-white'>
+                hello
+            </div>
+            </div>
+            </div>
+        </MainLayout>
     );
 }

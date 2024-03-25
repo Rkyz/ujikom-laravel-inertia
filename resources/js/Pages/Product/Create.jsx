@@ -1,8 +1,9 @@
 import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
 import MainLayout from '@/Layouts/MainLayout';
-import { router, useForm, usePage } from '@inertiajs/react';
+import { Link, router, useForm, usePage } from '@inertiajs/react';
 import React from 'react';
+import { GrFormPrevious } from 'react-icons/gr';
 
 const Create = () => {
 
@@ -32,7 +33,12 @@ const Create = () => {
     <MainLayout>
       <div className='w-full h-full flex flex-col gap-[10px]'>
                     <div className='p-[15px] bg-white capitalize font-bold'>
+                      <div className='flex items-center gap-[15px]'>
+                        <Link href='/product' className='bg-red-500 p-[10px] text-[20px] text-white rounded-full'>
+                          <GrFormPrevious/>
+                        </Link>
                         <p>add product</p>
+                      </div>
                     </div>
                   <div className='bg-white p-[15px] rounded-sm'>
                     <form onSubmit={ProductCreate} className='flex flex-col gap-[15px]'>

@@ -4,59 +4,40 @@ import {FaRegTrashCan} from "react-icons/fa6";
 import {Link, usePage} from '@inertiajs/react';
 import { IoMdClose } from "react-icons/io";
 import { MdOutlineDone } from "react-icons/md";
-
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import Swal from 'sweetalert2';
+import { AiOutlinePlus } from 'react-icons/ai';
+import { GrFormPrevious } from 'react-icons/gr';
 
 const Main = ({side}) => {
-    const {flash} = usePage().props
-    const [message, setMessage] = useState(flash.message);
-    const [countdown, setCountdown] = useState(5);
+    const { flash } = usePage().props;
+
+    console.log(flash)
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setMessage('');
-        }, 5000);
-
-        // Update countdown every second
-        const countdownTimer = setInterval(() => {
-            setCountdown(prevCountdown => prevCountdown - 1);
-        }, 1000);
-
-        // Cleanup timers to avoid memory leaks
-        return () => {
-            clearTimeout(timer);
-            clearInterval(countdownTimer);
-        };
-    }, []);
+        if (flash && flash.message) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: flash.message,
+          });
+        } 
+    }, [flash]);
 
     return (
         <MainLayout>
-            {message && (
-            <div className='bg-green-500 relative text-white flex items-center justify-between pt-[15px] pb-[20px] px-[15px] rounded-sm capitalize font-bold'>
-                <div className='flex items-center gap-[10px]'>
-                    <div className='text-[20px]'>
-                        <MdOutlineDone/>
-                    </div>
-                <p>
-                   {message}
-                </p>
-                </div>
-                <button className='text-[20px]'>
-                    <IoMdClose/>
-                </button>
-                <div className='absolute bottom-0 h-[5px] left-0 bg-white' style={{ width: `${(countdown / 5) * 100}%`, transition: 'width 1s linear' }}/>
-            </div>
-            )}
-
             <div className='w-full h-full mt-[10px] flex flex-col gap-[10px]'>
+                <div className='flex items-center gap-[10px]'>
+                    <div className=' h-full p-[15px] flex bg-red-500 text-white items-center rounded-sm'>
+                        <GrFormPrevious className='text-[20px] '/>
+                    </div>
                 <div
                     className='bg-white w-full sticky sm:top-[96.5px] border border-gray-200 flex items-center justify-between h-auto p-[15px] rounded-sm'>
-                    <p className='capitalize font-bold'>product</p>
-                    <Link
-                        href="/product/create"
-                        className='bg-red-500 text-white capitalize max-sm:text-[14px] font-bold rounded-sm max-sm:p-[8px] p-[10px]'>
-                        add product
+                    <p className='capitalize font-bold'>product management</p>
+                    <Link href='/product/create' className='text-red-500 sm:hidden'>
+                        <AiOutlinePlus/>
                     </Link>
+                </div>
                 </div>
                 <div className='flex flex-col gap-[10px]'>
                     <div

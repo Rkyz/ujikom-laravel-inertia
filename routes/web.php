@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -37,15 +39,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/product', [ProductController::class, 'index'])->name('product.index');
     Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
     Route::post('/product/create', [ProductController::class, 'store'])->name('product.store');
+    Route::get('/user', [UserController::class, 'index'])->name('user.index');
+    Route::get('/user/create', [UserController::class, 'create'])->name('register');
+    Route::post('/user/create', [UserController::class, 'store']);
+    Route::delete('/user/{id}', [UserController::class, 'destroy']);
+    Route::put('/user/{id}', [UserController::class, 'edit']);
 
     Route::get('/menu', function () {
         return Inertia::render('Menus/Menu');
     })->name('dashboard');
     Route::get('/menu/food', function () {
         return Inertia::render('Menus/Food');
-    })->name('dashboard');
-    Route::get('/user', function () {
-        return Inertia::render('User/Main');
     })->name('dashboard');
 });
 

@@ -42,7 +42,7 @@ export default function Dashboard({ auth }) {
                             </button>
                         </div>
                     </div>
-                    <div className='w-full h-full flex gap-[15px]'>
+                    <div className='w-full h-full pt-[10px] flex gap-[15px]'>
                     <div className='w-full bg-white p-[20px] flex flex-col gap-[15px]'>
                         <div className='flex items-center justify-between'>
                         <div className='flex items-center gap-[10px]'>

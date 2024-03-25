@@ -51,25 +51,25 @@ const Side = ({children, side, className}) => {
                         </div>
                             <ul className='flex sm:flex-col gap-[20px] sm:pb-[20px]'>
                                 <li className='relative'>
-                                    <Link href="/dashboard" className={`flex items-center gap-[10px] px-[20px] max-sm:p-[15px] max-sm:text-[18px] max-sm:rounded-md ${url === '/dashboard' && 'sm:bg-transparent max-sm:bg-[#D68285] max-sm:before:hidden  before:bg-[#D68285] before:h-full before:w-[5px] before:absolute before:left-0'} ${side ? 'max-md:justify-center':'md:justify-center max-sm:justify-center'} `}>
+                                    <Link href="/dashboard" className={`flex items-center gap-[10px] px-[20px] max-sm:p-[15px] max-sm:text-[18px] max-sm:rounded-md ${url === '/dashboard' && 'sm:bg-transparent max-sm:bg-red-500 max-sm:before:hidden  before:bg-red-500 before:h-full before:w-[5px] before:absolute before:left-0'} ${side ? 'max-md:justify-center':'md:justify-center max-sm:justify-center'} `}>
                                         <BsFillGrid1X2Fill className={`${url === '/dashboard' ? 'text-[#D68285] max-sm:text-white':'text-gray-400'}`}/>
                                         <p className={`capitalize font-medium max-sm:hidden text-[15px]  ${url === '/dashboard' ? 'text-gray-500':'text-gray-400'} ${side ? 'max-md:hidden':'md:hidden'}`}>dashboard</p>
                                     </Link>
                                 </li>
                                 <li className='relative'>
-                                    <Link href="/menu" className={`flex items-center gap-[10px] px-[20px] max-sm:p-[15px] max-sm:text-[18px] max-sm:rounded-md  ${url === '/menu' | url === '/menu/food' && 'sm:bg-transparent max-sm:bg-[#D68285] max-sm:before:hidden  before:bg-[#D68285] before:h-full before:w-[5px] before:absolute before:left-0'} ${side ? 'max-md:justify-center':'md:justify-center max-sm:justify-center'}  `}>
+                                    <Link href="/menu" className={`flex items-center gap-[10px] px-[20px] max-sm:p-[15px] max-sm:text-[18px] max-sm:rounded-md  ${url === '/menu' | url === '/menu/food' && 'sm:bg-transparent max-sm:bg-red-500 max-sm:before:hidden  before:bg-red-500 before:h-full before:w-[5px] before:absolute before:left-0'} ${side ? 'max-md:justify-center':'md:justify-center max-sm:justify-center'}  `}>
                                         <MdOutlineRestaurantMenu className={`${url === '/menu' ? 'text-[#D68285] max-sm:text-white':'text-gray-400'}`}/>
                                         <p className={`capitalize font-medium max-sm:hidden text-gray-400 text-[15px] ${url === '/menu' ? 'text-gray-500':'text-gray-400'} ${side ? 'max-md:hidden':'md:hidden'}`}>menu</p>
                                     </Link>
                                 </li>
                                 <li className='relative'>
-                                    <Link href="/product" className={`flex items-center gap-[10px] px-[20px] max-sm:p-[15px] max-sm:text-[18px] max-sm:rounded-md  ${url === '/product' | url === '/product/create' && 'sm:bg-transparent max-sm:bg-[#D68285] max-sm:before:hidden  before:bg-[#D68285] before:h-full before:w-[5px] before:absolute before:left-0'} ${side ? 'max-md:justify-center':'md:justify-center max-sm:justify-center'}  `}>
+                                    <Link href="/product" className={`flex items-center gap-[10px] px-[20px] max-sm:p-[15px] max-sm:text-[18px] max-sm:rounded-md  ${url === '/product' | url === '/product/create' && 'sm:bg-transparent max-sm:bg-red-500 max-sm:before:hidden  before:bg-red-500 before:h-full before:w-[5px] before:absolute before:left-0'} ${side ? 'max-md:justify-center':'md:justify-center max-sm:justify-center'}  `}>
                                         <BsBoxSeam className={`${url === '/product' | url === '/product/create'  ? 'text-[#D68285] max-sm:text-white':'text-gray-400'}`}/>
                                         <p className={`capitalize font-medium max-sm:hidden text-gray-400 text-[15px] ${url === '/product' | url === '/product/create'  ? 'text-gray-500':'text-gray-400'} ${side ? 'max-md:hidden':'md:hidden'}`}>product</p>
                                     </Link>
                                 </li>
                                 <li className='relative'>
-                                    <Link href="/user" className={`flex items-center gap-[10px] px-[20px] max-sm:p-[15px] max-sm:text-[18px] max-sm:rounded-md  ${url === '/user' | url === '/user/create' && 'sm:bg-transparent max-sm:bg-[#D68285] max-sm:before:hidden  before:bg-[#D68285] before:h-full before:w-[5px] before:absolute before:left-0'} ${side ? 'max-md:justify-center':'md:justify-center max-sm:justify-center'}  `}>
+                                    <Link href="/user" className={`flex items-center gap-[10px] px-[20px] max-sm:p-[15px] max-sm:text-[18px] max-sm:rounded-md  ${url === '/user' | url === '/user/create' && 'sm:bg-transparent max-sm:bg-red-500 max-sm:before:hidden  before:bg-red-500 before:h-full before:w-[5px] before:absolute before:left-0'} ${side ? 'max-md:justify-center':'md:justify-center max-sm:justify-center'}  `}>
                                         <PiUsersThreeLight className={`text-[20px] ${url === '/user' | url === '/user/create'  ? 'text-[#D68285] max-sm:text-white':'text-gray-400'}`}/>
                                         <p className={`capitalize font-medium max-sm:hidden text-gray-400 text-[15px] ${url === '/user' | url === '/user/create'  ? 'text-gray-500':'text-gray-400'} ${side ? 'max-md:hidden':'md:hidden'}`}>user</p>
                                     </Link>
@@ -85,13 +85,13 @@ const Side = ({children, side, className}) => {
                         </div>
                         <ul className='flex sm:flex-col gap-[20px] sm:pb-[20px] '>
                                 <li className='relative'>
-                                    <Link href="/setting" className={`flex items-center gap-[10px] px-[20px] max-sm:p-[15px] max-sm:text-[18px] max-sm:rounded-md  ${url === '/setting' && 'sm:bg-transparent max-sm:bg-[#D68285] max-sm:before:hidden  before:bg-[#D68285] before:h-full before:w-[5px] before:absolute before:left-0'} ${side ? 'max-md:justify-center':'md:justify-center max-sm:justify-center'}  `}>
+                                    <Link href="/setting" className={`flex items-center gap-[10px] px-[20px] max-sm:p-[15px] max-sm:text-[18px] max-sm:rounded-md  ${url === '/setting' && 'sm:bg-transparent max-sm:bg-red-500 max-sm:before:hidden  before:bg-red-500 before:h-full before:w-[5px] before:absolute before:left-0'} ${side ? 'max-md:justify-center':'md:justify-center max-sm:justify-center'}  `}>
                                         <IoSettingsOutline className={`text-[20px] ${url === '/setting'  ? 'text-[#D68285] max-sm:text-white':'text-gray-400'}`}/>
                                         <p className={`capitalize font-medium max-sm:hidden text-gray-400 text-[15px] ${url === '/setting' ? 'text-gray-500':'text-gray-400'} ${side ? 'max-md:hidden':'md:hidden'}`}>user</p>
                                     </Link>
                                 </li>
                                 <li className='relative sm:hidden'>
-                                    <button onClick={handleOption}  className={`flex items-center gap-[10px] px-[20px] max-sm:p-[15px] max-sm:text-[18px] max-sm:rounded-md  ${option && 'sm:bg-transparent max-sm:bg-[#D68285] max-sm:before:hidden  before:bg-[#D68285] before:h-full before:w-[5px] before:absolute before:left-0'} ${side ? 'max-md:justify-center':'md:justify-center max-sm:justify-center'}  `}>
+                                    <button onClick={handleOption}  className={`flex items-center gap-[10px] px-[20px] max-sm:p-[15px] max-sm:text-[18px] max-sm:rounded-md  ${option && 'sm:bg-transparent max-sm:bg-red-500 max-sm:before:hidden  before:bg-red-500 before:h-full before:w-[5px] before:absolute before:left-0'} ${side ? 'max-md:justify-center':'md:justify-center max-sm:justify-center'}  `}>
                                         <IoMdOptions className={`text-[20px] ${option  ? ' text-white':'text-gray-400'}`}/>
                                     </button>
                                 </li>
