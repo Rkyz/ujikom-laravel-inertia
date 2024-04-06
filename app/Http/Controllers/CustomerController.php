@@ -4,16 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\customer;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+    // public function index()
+    // {
+    //     $customers = Customer::all();
+        
+    //     return Inertia::render('Customer/Index', [
+    //         'customers' => $customers
+    //     ]);
+    // }
 
     /**
      * Show the form for creating a new resource.

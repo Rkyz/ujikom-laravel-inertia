@@ -8,54 +8,26 @@ import { GrClose, GrFormPrevious } from 'react-icons/gr';
 import { IoClose } from 'react-icons/io5';
 import Swal from 'sweetalert2';
 
-const Main = ({users}) => {
-    const { props } = usePage();
-    const currentUser = props.auth && props.auth.user; 
+const Main = ({users, auth}) => {
+    const [isEditActive, setIsEditActive] = useState(false); 
+    const [editedUser, setEditedUser] = useState(null);
 
     const { data, setData } = useForm({
-        name: '',
-        role: '',
+        name: editedUser ? editedUser.name : '', // Set name to editedUser.name if editedUser exists, otherwise set it to an empty string
+        role: editedUser ? editedUser.role : '', // Set role to editedUser.role if editedUser exists, otherwise set it to an empty string
     });
 
     const getFirstCharacter = (str) => {
         return str.charAt(0);
     };
 
-    const handleChange = (e) => {
+    function handleChange(e) {
         const { name, value } = e.target;
-        if (name === 'name') {
-            if (!editedUser || value !== editedUser.name) {
-                setData(values => ({
-                    ...values,
-                    [name]: value,
-                    role: editedUser ? editedUser.role : ''
-                }));
-            } else {
-                setData(values => ({
-                    ...values,
-                    [name]: value
-                }));
-            }
-        } else if (name === 'role') {
-            if (!editedUser || value !== editedUser.role) {
-                setData(values => ({
-                    ...values,
-                    [name]: value,
-                    name: editedUser ? editedUser.name : ''
-                }));
-            } else {
-                setData(values => ({
-                    ...values,
-                    [name]: value
-                }));
-            }
-        } else {
-            setData(values => ({
-                ...values,
-                [name]: value
-            }));
-        }
-    }
+        setData(prevData => ({
+          ...prevData,
+          [name]: value,
+        }));
+      }
     
     
     const handleEdit = (e) => {
@@ -65,7 +37,6 @@ const Main = ({users}) => {
             setIsEditActive(false); 
         } catch (error) {
             console.error('Failed to edit user:', error);
-            // Anda dapat menangani kesalahan di sini, misalnya dengan menampilkan pesan kesalahan kepada pengguna
         }
     }
     
@@ -87,17 +58,19 @@ const Main = ({users}) => {
         }).then((result) => {
           if (result.isConfirmed) {
             router.delete(`/user/${id}`);
+            Swal.fire({
+                title: 'Success',
+                text: "oke status",
+                icon: 'success',
+            })
           }
         });
       };
 
       const filteredUsers = users.filter(user => {
-        return !(props.auth && user.id === props.auth.user.id); 
+        return !(auth && user.id === auth.user.id); 
     });
-
-    const [isEditActive, setIsEditActive] = useState(false); 
-    const [editedUser, setEditedUser] = useState(null); 
-
+ 
     const handleEditClick = (user) => {
         setIsEditActive(true); 
         setEditedUser(user); 
@@ -108,14 +81,12 @@ const Main = ({users}) => {
         setEditedUser(null);
     };
 
-
-
-    console.log(currentUser, 'user current');
-    console.log(users);
     return (
-        <MainLayout >
+        <MainLayout 
+        auth={auth}
+        >
             <Head title="Dashboard"/>
-            <div className='w-full h-full flex flex-col gap-[10px] pt-[10px]'>
+            <div className='w-full h-full flex flex-col gap-[10px]'>
                 <div className='flex items-center gap-[10px]'>
                     <div
                         className=' h-full p-[15px] flex bg-red-500 text-white items-center rounded-sm'>
@@ -123,7 +94,7 @@ const Main = ({users}) => {
                     </div>
                     <div
                         className='bg-white w-full sticky sm:top-[96.5px] border border-gray-200 flex items-center justify-between h-auto p-[15px] rounded-sm'>
-                        <p className='capitalize font-bold'>user management</p>
+                        <p className='capitalize font-bold'>user management - {auth.user.name}</p>
                         <Link href='/user/create' className='text-red-500 sm:hidden'>
                             <AiOutlinePlus/>
                         </Link>
@@ -157,10 +128,10 @@ const Main = ({users}) => {
                                     </div>
                                 </div>
                                 <div className='grid grid-cols-2 gap-[10px]'>
-                                    <button onClick={() => handleEditClick(user)} className='border-red-500 border p-[px8] rounded-md font-bold text-red-500 capitalize'>
+                                    <button onClick={() => handleEditClick(user)} className='border-red-500 hover:bg-red-500 hover:text-white border p-[px8] rounded-md font-bold text-red-500 capitalize'>
                                         edit
                                     </button>
-                                    <button onClick={() => handleDelete(user.id)} className='bg-red-500 rounded-md text-white font-bold p-[8px] capitalize'>
+                                    <button onClick={() => handleDelete(user.id)} className='bg-red-500 rounded-md text-white hover:bg-transparent hover:border-red-500 hover:text-red-500 border font-bold p-[8px] capitalize'>
                                         delete
                                     </button>
                                 </div>
@@ -195,7 +166,7 @@ const Main = ({users}) => {
                         );
                     })
                 ) : (
-                    <NoData/>
+                    <NoData className='text-[25px]'/>
                 )}
                 </div>
             </div>

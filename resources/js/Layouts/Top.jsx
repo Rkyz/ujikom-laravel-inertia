@@ -4,7 +4,7 @@ import { IoOptionsOutline } from "react-icons/io5";
 import { IoCartOutline } from "react-icons/io5";
 import { RxHamburgerMenu } from "react-icons/rx";
 
-const Top = ({handleOpenCart, handleSide, side}) => {
+const Top = ({handleOpenCart, handleSide, side, url, category}) => {
   return (
     <div className={`w-full fixed max-h-[86.5px] z-[49] h-full bg-white py-[20px] md:pr-[10px] max-md:pr-[10px]  flex items-center justify-between border-b-[2px] border-gray-200 ${side ? 'pl-[260px] max-md:pl-[95px] max-sm:pl-[10px]':'pl-[100px]  max-md:pl-[10px]'}`}>
       <div className='w-auto h-full flex items-center gap-[10px] '>
@@ -28,10 +28,10 @@ const Top = ({handleOpenCart, handleSide, side}) => {
             <IoOptionsOutline className='text-[20px]'/>
             <p className='max-sm:hidden'>option</p>
         </button>
-        <button onClick={handleOpenCart} className='bg-[#F55552] bg-opacity-10 gap-[10px] h-full rounded-sm font-bold capitalize text-[#F55552] max-sm:text-gray-400 flex items-center max-sm:p-[12px] sm:p-[10px]'>
-            <IoCartOutline className='text-[20px]'/>
-            <p className='max-sm:hidden'>cart</p>
-        </button>
+            <button onClick={handleOpenCart} className='bg-[#F55552] bg-opacity-10 gap-[10px] h-full rounded-sm font-bold capitalize text-[#F55552] max-sm:text-gray-400 flex items-center max-sm:p-[12px] sm:p-[10px]'>
+                <IoCartOutline className='text-[20px]'/>
+                <p className='max-sm:hidden'>cart</p>
+            </button>
       </div>
     </div>
   )

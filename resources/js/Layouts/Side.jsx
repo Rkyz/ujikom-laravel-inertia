@@ -14,19 +14,20 @@ import { IoLogOutOutline } from "react-icons/io5";
 import { IoMdOptions } from "react-icons/io";
 import NavLink from '@/Components/NavLink';
 
-const Side = ({children, side, className}) => {
+const Side = ({children, side, className, auth, form}) => {
     const [option, setOption] = useState(false)
     const handleOption = () => {
         setOption(!option)
     }
-    
-    const {url} = usePage();
-    console.log(url)
+    const masuk = usePage();
+    const role = masuk.props.auth.user.role
+    const url = masuk.url
     const now = new Date();
     const dayOfWeek = now.toLocaleDateString('en-US', { weekday: 'short' });
     const dateOfWeek = now.toLocaleDateString('en-US', { day: 'numeric' }) + ' ' + now.toLocaleDateString('en-US', { month: 'short' });
   return (
-    <div className={`sm:h-screen max-sm:flex-col max-sm:gap-[10px] fixed z-[50] max-sm:bottom-0 w-full flex flex-col items-center justify-between max-sm:p-[10px] sm:bg-white border-r-[2px] border-gray-200 max-sm:max-w-full max-sm:h-auto ${side ? 'max-w-[250px] max-md:max-w-[85px] max-sm:hidden':'max-w-[85px] max-md:sm:hidden'} ${option && 'max-sm:flex-col-reverse '}`}>
+    <div className={`sm:h-screen max-sm:flex-col max-sm:gap-[10px] fixed z-[50] max-sm:bottom-0 w-full flex flex-col items-center justify-between max-sm:p-[10px] sm:bg-white max-sm:shadow-xl border-r-[2px] border-gray-200 max-sm:max-w-full max-sm:h-auto ${side ? 'max-w-[250px] max-md:max-w-[85px] max-sm:hidden':'max-w-[85px] max-md:sm:hidden'} ${option && 'max-sm:flex-col-reverse '}`}>
+        
         <div className='flex sm:flex-col max-sm:flex-col-reverse w-full max-sm:gap-[10px]'>
             <div className='relative flex items-center p-[20px] border-b-[2px] border-gray-200 max-sm:hidden'>
                 <div className='flex gap-[15px] items-center'>
@@ -38,11 +39,10 @@ const Side = ({children, side, className}) => {
                     <p className='text-[10px] text-gray-400 font-bold'>{dayOfWeek}, {dateOfWeek}</p>
                 </div>
                 </div>
-          
             </div>
             <div className='w-full h-auto max-sm:bg-white overflow-x-scroll hidden-scroll max-sm:rounded-md max-sm:py-[10px] '>
                 <nav className='flex sm:flex-col max-sm:gap-[20px] max-sm:justify-center max-sm:items-center'>
-                    <div className='flex flex-col gap-[10px] sm:border-b sm:border-gray-300 bg-transparent '>
+                    <div className='flex flex-col gap-[10px] sm:border-b sm:border-gray-300 bg-transparent'>
                         <div className={`flex items-center max-sm:hidden px-[20px] pt-[20px] ${!side ? 'justify-center mb-[10px]':'justify-between max-md:justify-center max-md:mb-[10px]'} `}>
                                 <p className='text-gray-500 text-[12px] uppercase font-bold flex gap-[3px]'>menu <span className={`flex flex-col ${side ? 'max-md:hidden':'md:hidden'}`}>dashboard</span></p>
                         <button className={`text-[12px] rotate-90 text-gray-500 hover:bg-black p-[10px] rounded-full hover:bg-opacity-10 ${side ? 'max-md:hidden':'md:hidden'} `}>
@@ -57,9 +57,9 @@ const Side = ({children, side, className}) => {
                                     </Link>
                                 </li>
                                 <li className='relative'>
-                                    <Link href="/menu" className={`flex items-center gap-[10px] px-[20px] max-sm:p-[15px] max-sm:text-[18px] max-sm:rounded-md  ${url === '/menu' | url === '/menu/food' && 'sm:bg-transparent max-sm:bg-red-500 max-sm:before:hidden  before:bg-red-500 before:h-full before:w-[5px] before:absolute before:left-0'} ${side ? 'max-md:justify-center':'md:justify-center max-sm:justify-center'}  `}>
-                                        <MdOutlineRestaurantMenu className={`${url === '/menu' ? 'text-[#D68285] max-sm:text-white':'text-gray-400'}`}/>
-                                        <p className={`capitalize font-medium max-sm:hidden text-gray-400 text-[15px] ${url === '/menu' ? 'text-gray-500':'text-gray-400'} ${side ? 'max-md:hidden':'md:hidden'}`}>menu</p>
+                                    <Link href="/menus" className={`flex items-center gap-[10px] px-[20px] max-sm:p-[15px] max-sm:text-[18px] max-sm:rounded-md  ${url === '/menus' | url === '/menus/food' | url === '/history' && 'sm:bg-transparent max-sm:bg-red-500 max-sm:before:hidden  before:bg-red-500 before:h-full before:w-[5px] before:absolute before:left-0'} ${side ? 'max-md:justify-center':'md:justify-center max-sm:justify-center'}  `}>
+                                        <MdOutlineRestaurantMenu className={`${url === '/menus' | url === '/history' ? 'text-[#D68285] max-sm:text-white':'text-gray-400'}`}/>
+                                        <p className={`capitalize font-medium max-sm:hidden text-gray-400 text-[15px] ${url === '/menus' ? 'text-gray-500':'text-gray-400'} ${side ? 'max-md:hidden':'md:hidden'}`}>menus</p>
                                     </Link>
                                 </li>
                                 <li className='relative'>
@@ -68,12 +68,14 @@ const Side = ({children, side, className}) => {
                                         <p className={`capitalize font-medium max-sm:hidden text-gray-400 text-[15px] ${url === '/product' | url === '/product/create'  ? 'text-gray-500':'text-gray-400'} ${side ? 'max-md:hidden':'md:hidden'}`}>product</p>
                                     </Link>
                                 </li>
+                                {role === 'admin' && (
                                 <li className='relative'>
                                     <Link href="/user" className={`flex items-center gap-[10px] px-[20px] max-sm:p-[15px] max-sm:text-[18px] max-sm:rounded-md  ${url === '/user' | url === '/user/create' && 'sm:bg-transparent max-sm:bg-red-500 max-sm:before:hidden  before:bg-red-500 before:h-full before:w-[5px] before:absolute before:left-0'} ${side ? 'max-md:justify-center':'md:justify-center max-sm:justify-center'}  `}>
                                         <PiUsersThreeLight className={`text-[20px] ${url === '/user' | url === '/user/create'  ? 'text-[#D68285] max-sm:text-white':'text-gray-400'}`}/>
                                         <p className={`capitalize font-medium max-sm:hidden text-gray-400 text-[15px] ${url === '/user' | url === '/user/create'  ? 'text-gray-500':'text-gray-400'} ${side ? 'max-md:hidden':'md:hidden'}`}>user</p>
                                     </Link>
                                 </li>
+                                )}
                         </ul>
                     </div>
                     <div className={`flex flex-col gap-[10px] sm:py-[20px] bg-transparent ${!side && 'sm:mb-[10px]'}`}>

@@ -5,8 +5,9 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
+import Form from '@/Components/Form';
 
-export default function Create() {
+export default function Create({setForm}) {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
@@ -24,19 +25,12 @@ export default function Create() {
     const submit = (e) => {
         e.preventDefault();
         post(route('register'));
+
     };
 
     return (
-        <MainLayout>
-            <Head title="Create" />
-            <div className='flex gap-[10px] w-full'>
-
-            <div className='w-full h-full pt-[10px] flex flex-col gap-[10px]'>
-                    <div className='p-[15px] bg-white capitalize font-bold'>
-                        <p>add user</p>
-                    </div>
-            <div className='bg-white p-[15px] rounded-sm'>
-
+            <div className='w-full h-full flex flex-col gap-[10px]'>
+            <div className='bg-white rounded-sm'>
             <form onSubmit={submit} className='flex flex-col gap-[15px]'>
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
@@ -131,12 +125,6 @@ export default function Create() {
             </form>
             </div>
             </div>
-            <div className='w-auto h-full pt-[10px]'>
-            <div className='w-auto p-[15px] h-full bg-white'>
-                hello
-            </div>
-            </div>
-            </div>
-        </MainLayout>
+
     );
 }

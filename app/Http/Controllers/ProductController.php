@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\category;
 use App\Models\product;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Inertia\Response;
 use Inertia\Inertia;
 
 class ProductController extends Controller
@@ -13,7 +16,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Product/Main');
+        return Inertia::render('Product/Main',[
+            'products' => Product::with('Category')->get(),
+            'categories' =>  Category::all()
+        ]);
     }
 
     /**
@@ -37,43 +43,99 @@ class ProductController extends Controller
             'name.required' => 'nama lu kosong goblok',
             'price.required' => 'price lu kosong goblok',
             'stok.required' => 'stok lu kosong goblok',
-            'name.unique' => 'nama lu jan sama setan'
+            'name.unique' => 'nama lu jan sama setan',
         ]);
 
-        Product::create($data);
+            $product = new Product([
+            'name' => $data['name'],
+            'price' => $data['price'],
+            'stok' => $data['stok'],
+            'category_id' => $request->input('category_id'),
+        ]);
+    
+        // Simpan produk
+        $product->save();
 
         return redirect('/product')->with('message', 'Product Berhasil Disimpan');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(product $product)
+    public function updateStok(Request $request, $id)
     {
-        //
+        $request->validate([
+            'stok' => 'required|min:1', // Stok harus positif integer
+        ],[
+            'stok.required' => 'stok tidak boleh kosong',
+            'stok.min' => 'stok tidak boleh 0'
+        ]);
+    
+        $product = Product::findOrFail($id);
+        $currentStok = $product->stok;
+    
+        $newStok = $currentStok + $request->stok;
+        
+        $product->update([
+            'stok' => $newStok,
+        ]);
+    
+        return redirect()->back()->with('message', 'Stok berhasil diperbarui');
+    }
+    
+    
+    public function edit($id)
+    {
+        return Inertia::render('Product/Edit', [
+            'products' => Product::findOrFail($id),
+            'categories' =>  Category::all()
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(product $product)
+    public function update(Request $request, $id)
     {
-        //
+        $product = product::find($id);
+        $data = $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'category_id' => '',
+        ],[
+            'name.required' => 'nama lu kosong goblok',
+            'price.required' => 'price lu kosong goblok',
+        ]);
+    
+        $product->update($data);
+    
+        return redirect('/product')->with('message', 'Product Berhasil Diupdate');
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, product $product)
-    {
-        //
-    }
+    
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(product $product)
+    public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        return redirect('/product')->with('message', 'Product berhasil dihapus.');
     }
+
+    public function show($category)
+    {
+       $category = Category::where('category', $category)->first();
+
+       if (!$category) {
+           abort(404, 'Kategori tidak ditemukan');
+       }
+
+       $products = $category->products;
+
+       return Inertia::render('Menus/Menu', [
+           'category' => $category,
+           'products' => $products,
+       ]);
+    }
+    
+    
+    
+    
+
 }

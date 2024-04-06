@@ -18,5 +18,12 @@
     </head>
     <body class="font-sans antialiased bg-[#EEEEF1]">
         @inertia
+
+        @php
+            $customers = \App\Models\Customer::all();
+        @endphp
     </body>
+    <script>
+        window.customers = @json($customers);
+    </script>
 </html>

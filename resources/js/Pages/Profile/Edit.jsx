@@ -8,6 +8,7 @@ import MainLayout from '@/Layouts/MainLayout';
 export default function Edit({ auth, mustVerifyEmail, status }) {
     return (
         <MainLayout
+        auth={auth}
         >
             <Head title="Setting" />
 
